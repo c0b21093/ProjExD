@@ -13,7 +13,7 @@ def shutudai():
     return answers[set], start
 
 def kaito(hikisu1):
-
+    #修正箇所のコメントではなかったので修正ではありません。
     judg = 0
 
     answer = input("回答：")
