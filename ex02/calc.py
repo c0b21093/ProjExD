@@ -10,6 +10,9 @@ def button_click(event):
     txt = btn["text"]
     tkm.showinfo(txt, f"[{txt}]ボタンが押されました")
 
+entry = tk.Entry(justify="right", width = 10, font = ("Times New Roman", 40))
+entry.grid(row = 0, column = 0, columnspan = 3)
+
 a, b = 1, 0
 for i ,num in enumerate(range(9, -1, -1), 1):
     button = tk.Button( root, text = f'{num}', 
