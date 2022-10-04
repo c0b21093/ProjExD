@@ -1,3 +1,4 @@
+
 import tkinter as tk
 import tkinter.messagebox as tkm
 
@@ -8,10 +9,8 @@ root.geometry("300x500")
 def button_click(event):
     btn = event.widget
     txt = btn["text"]
-    tkm.showinfo(txt, f"[{txt}]ボタンが押されました")
-
-entry = tk.Entry(justify="right", width = 10, font = ("Times New Roman", 40))
-entry.grid(row = 0, column = 0, columnspan = 3)
+    #tkm.showinfo(txt, f"[{txt}]ボタンが押されました")
+    entry.insert(tk.END, txt)
 
 a, b = 1, 0
 for i ,num in enumerate(range(9, -1, -1), 1):
@@ -24,5 +23,9 @@ for i ,num in enumerate(range(9, -1, -1), 1):
     if i%3 == 0:
         a += 1
         b = 0
+
+entry = tk.Entry(justify="right", width = 10, font = ("Times New Roman", 40))
+entry.grid(row = 0, column = 0, columnspan = 3)
+
 
 root.mainloop()
