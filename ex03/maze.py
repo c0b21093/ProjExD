@@ -58,6 +58,8 @@ def main_proc():
 def shokika(event):
     global mx, my
     mx, my = 1, 1
+    cx, cy, = mx*100+50, my*100+50
+    canv.create_image(cx, cy, image=img, tag = "tori")
 
     
 if __name__ == "__main__":
