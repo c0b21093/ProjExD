@@ -39,6 +39,7 @@ def main_proc():
     canv.coords("tori", cx, cy)
     after_id = root.after(100, main_proc)
 
+    ### （追加）ゴールしたらリアルタイム処理を終了し、サブウィンドウを表示し、ゴールを知らせる
     if mx==13 and my==7:
         root.after_cancel(after_id)
         goal_win = tk.Toplevel()
@@ -47,10 +48,12 @@ def main_proc():
 
         goal_txt = tk.Label(goal_win, text="!! GOAL !!", font=("Ricty Diminished", 30))
         goal_txt.pack()
-
+        ### 未完成のリセットボタン
         reset_button = tk.Button(goal_win, text="最初から")
         reset_button.bind("<1>", shokika)
         reset_button.pack()
+        ###
+    ###
 
     
 
