@@ -18,7 +18,6 @@ def key_up(event):
 
 
 def main_proc():
-    global roop
     global after_id
 
     delta = {
