@@ -1,5 +1,9 @@
+from symbol import global_stmt
 import tkinter as tk
 import maze_maker
+import tkinter.messagebox as tkm
+
+after_id = None
 
 
 def key_down(event):
@@ -14,6 +18,9 @@ def key_up(event):
 
 
 def main_proc():
+    global roop
+    global after_id
+
     delta = {
         
         ""     : [0,  0], 
@@ -25,14 +32,35 @@ def main_proc():
     global mx, my
     global cx, cy
 
+
     if maze_list[my+delta[key][1]][mx+delta[key][0]] == 0:
         mx, my = mx+delta[key][0], my+delta[key][1] 
         cx, cy = mx*100+50, my*100+50
     canv.coords("tori", cx, cy)
-    root.after(100, main_proc)
+    after_id = root.after(100, main_proc)
+
+    if mx==13 and my==7:
+        root.after_cancel(after_id)
+        goal_win = tk.Toplevel()
+        goal_win.title("GOAL")
+        goal_win.geometry("500x200")
+
+        goal_txt = tk.Label(goal_win, text="!! GOAL !!", font=("Ricty Diminished", 30))
+        goal_txt.pack()
+
+        reset_button = tk.Button(goal_win, text="最初から")
+        reset_button.bind("<1>", shokika)
+        reset_button.pack()
+
+    
 
 
+def shokika(event):
+    global mx, my
+    mx, my = 1, 1
 
+    
+    
 
 if __name__ == "__main__":
     root = tk.Tk()
@@ -56,5 +84,5 @@ if __name__ == "__main__":
     root.bind("<KeyRelease>", key_up)
 
     main_proc()
-    
+
     root.mainloop()
