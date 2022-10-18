@@ -22,7 +22,6 @@ def main_proc():
     global after_id
 
     delta = {
-        
         ""     : [0,  0], 
         "Up"   : [0, -1],
         "Down" : [0, +1],
@@ -31,7 +30,6 @@ def main_proc():
     }
     global mx, my
     global cx, cy
-
 
     if maze_list[my+delta[key][1]][mx+delta[key][0]] == 0:
         mx, my = mx+delta[key][0], my+delta[key][1] 
@@ -63,8 +61,6 @@ def shokika(event):
     mx, my = 1, 1
 
     
-    
-
 if __name__ == "__main__":
     root = tk.Tk()
     root.title("迷える工科トン")
