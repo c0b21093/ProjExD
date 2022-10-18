@@ -1,6 +1,6 @@
 import tkinter as tk
 
-global cx
+global cx, key
 global cy
 
 root = tk.Tk()
@@ -13,7 +13,8 @@ canvas.pack()
 img = tk.PhotoImage(file="fig/0.png")
 cx = 300
 cy = 400
+key = ""
 
-canvas.create_image(cx, cy, image=img tag="tori")
+canvas.create_image(cx, cy, image=img, tag="tori")
 
 root.mainloop()
