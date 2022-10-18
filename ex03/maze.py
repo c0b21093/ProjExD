@@ -31,8 +31,7 @@ def main_proc():
     root.after(100, main_proc)
 
 
-def make_maze(15, 9):
-    
+#def make_maze(15, 9):
 
 
 if __name__ == "__main__":
