@@ -12,7 +12,7 @@ def check_bound(obj_rct, scr_rct):
     """
     yoko, tate = +1, +1
 
-    ###[追加］壁にあらると加速
+    ###[追加］壁にあらると加速###
     print(count)
     if obj_rct.left < scr_rct.left or scr_rct.right < obj_rct.right: 
         if count < 6:
@@ -28,7 +28,8 @@ def check_bound(obj_rct, scr_rct):
             count += 1 
         else:
             tate = -1
-    ###
+    ### ###
+
     return yoko, tate
 
 def made_bomb():
@@ -108,9 +109,12 @@ def main():
         
         # 練習8
         if tori_rct.colliderect(bomb_rct): # こうかとんrctが爆弾rctと重なったら
-            ###［追加］ゲームオーバー標示
+
+            ###［追加］ゲームオーバー標示###
             text = font1.render("GAMEOVER", True, (0,0,0))
             scrn_sfc.blit(text, [200, 400])
+            ### ###
+
             pg.display.update()
             clock.tick(0.5)
             return
