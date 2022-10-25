@@ -9,17 +9,26 @@ def main():
     screen = pg.display.get_surface()
     
 
-    bg = pg.image.load("fig/haikei.png").convert_alpha()
+    bg = pg.image.load("fig/haikei.png")
     rect_bg = bg.get_rect()
 
+    tori = pg.image.load("fig/0.png")
+    tori = pg.transform.rotozoom(tori, 0, 2.0)
+    rect_tori = tori.get_rect()
+    rect_tori.center = (900,400)
+
     while(1):
-        pg.display.update()
         screen.blit(bg, rect_bg)
+        screen.blit(tori, rect_tori)
 
         for event in pg.event.get():
             if event.type == pg.QUIT:
                     pg.quit()
                     sys.exit()
+        
+        pg.display.update()
+        clock = pg.time.Clock()
+        clock.tick(1000)
         
 
 
