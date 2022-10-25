@@ -1,6 +1,8 @@
+from codecs import BOM_BE
 import tkinter as tk
 import pygame as pg
 import sys
+import random
 
 def main():
     tori_x, tori_y = 900, 400
@@ -18,22 +20,33 @@ def main():
     rect_tori = tori.get_rect()
     rect_tori.center = (tori_x, tori_y)
 
+    bomb_x = random.randint(10,890)
+    bomb_y = random.randint(10,1590)
+    bomb = pg.Surface((20, 20))
+    bomb.set_colorkey((0,0,0))
+    pg.draw.circle(bomb, (255, 0, 0), (10, 10), 10)
+    rect_bomb = bomb.get_rect()
+    
+
     while(1):
         screen.blit(bg, rect_bg)
         screen.blit(tori, rect_tori)
+        screen.blit(bomb, (bomb_x, bomb_y))
 
         for event in pg.event.get():
             if event.type == pg.QUIT:
                     pg.quit()
                     sys.exit()
-            if event.type == pg.KEYDOWN and event.key == pg.K_DOWN:
-                rect_tori.move_ip(0, 10)
-            if event.type == pg.KEYDOWN and event.key == pg.K_UP:
-                rect_tori.move_ip(0, -10)
-            if event.type == pg.KEYDOWN and event.key == pg.K_LEFT:
-                rect_tori.move_ip(-10, 0)
-            if event.type == pg.KEYDOWN and event.key == pg.K_RIGHT:
-                rect_tori.move_ip(10, 0)
+
+        key_states = pg.key.get_pressed()
+        if key_states[pg.K_UP]:
+            rect_tori.move_ip(0, -1)
+        if key_states[pg.K_DOWN]:
+            rect_tori.move_ip(0, 1)
+        if key_states[pg.K_LEFT]:
+            rect_tori.move_ip(-1, 0)
+        if key_states[pg.K_RIGHT]:
+            rect_tori.move_ip(1, 0)
 
         
         pg.display.update()
