@@ -11,6 +11,8 @@ def check_bound(obj_rct, scr_rct):
     領域内：+1／領域外：-1
     """
     yoko, tate = +1, +1
+
+    ###[追加］壁にあらると加速
     print(count)
     if obj_rct.left < scr_rct.left or scr_rct.right < obj_rct.right: 
         if count < 6:
@@ -26,6 +28,7 @@ def check_bound(obj_rct, scr_rct):
             count += 1 
         else:
             tate = -1
+    ###
     return yoko, tate
 
 def made_bomb():
@@ -41,7 +44,7 @@ def made_bomb():
 def main():
     pg.init()
     font1 = pg.font.Font(None, 300)
-    font2 = pg.font.Font(None, 150)
+
     # 練習1
     pg.display.set_caption("逃げろ！こうかとん")
     scrn_sfc = pg.display.set_mode((1600, 900))
@@ -105,12 +108,9 @@ def main():
         
         # 練習8
         if tori_rct.colliderect(bomb_rct): # こうかとんrctが爆弾rctと重なったら
+            ###［追加］ゲームオーバー標示
             text = font1.render("GAMEOVER", True, (0,0,0))
             scrn_sfc.blit(text, [200, 400])
-            text2 = font2.render("R:retry", True, (0,0,0))
-            scrn_sfc.blit(text2, [200, 600])
-            if key_states[pg.K_r]:
-                pg.init()
             pg.display.update()
             clock.tick(0.5)
             return
