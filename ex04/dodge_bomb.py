@@ -43,7 +43,6 @@ def made_bomb():
 
 
 def main():
-    pg.init()
     font1 = pg.font.Font(None, 300)
 
     # 練習1
