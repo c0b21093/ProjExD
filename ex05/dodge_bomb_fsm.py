@@ -65,6 +65,22 @@ class Bomb:
 
 
 ###追加
+class Change_avatar:
+    avatars = {
+        pg.K_1: "fig/0.png",
+        pg.K_2: "fig/6.png",
+        pg.K_3: "fig/8.png",
+    }
+
+    def __init__(self):
+        key_states = pg.key.get_pressed()
+        for key, avatar in Change_avatar.avatars.items():
+            if key_states[key]:
+                bird = Bird(avatar, 2.0, (900, 400))
+
+        
+
+
 class Gameover:
     def __init__(self, font, color, screen):
         self.text = font.render("GAMEOVER", True, color)
@@ -114,6 +130,8 @@ def main():
 
         # 練習7
         bomb.update(screen)
+
+        Change_avatar()
     
         # 練習8
         if bird.rct.colliderect(bomb.rct): # こうかとんrctが爆弾rctと重なったら
