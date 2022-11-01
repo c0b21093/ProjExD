@@ -75,10 +75,10 @@ class Change_avatar:
         key_states = pg.key.get_pressed()
         for key, avatar in Change_avatar.avatars.items():
             if key_states[key]:
+                print(avatar)
                 bird = Bird(avatar, 2.0, (900, 400))
 
         
-
 
 class Gameover:
     def __init__(self, font, color, screen):
@@ -131,6 +131,8 @@ def main():
         bomb.update(screen)
 
         Change_avatar()
+        bird.update(screen)
+
     
         # 練習8
         if bird.rct.colliderect(bomb.rct): # こうかとんrctが爆弾rctと重なったら
