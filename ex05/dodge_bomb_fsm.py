@@ -24,10 +24,10 @@ class Bird:
     }
 
     def __init__(self, avater, scale, xy):
-        self.sfc = pg.image.load(avater)#"fig/6.png"
-        self.sfc = pg.transform.rotozoom(self.sfc, 0, scale)#倍率2.0
+        sfc = pg.image.load(avater) # "fig/6.png"
+        self.sfc = pg.transform.rotozoom(sfc, 0, scale) # 2.0
         self.rct = self.sfc.get_rect()
-        self.rct.center = xy #900, 400
+        self.rct.center = xy # 900, 400
     
     def blit(self, screen):
         screen.sfc.blit(self.sfc, self.rct) # 練習3
@@ -42,9 +42,6 @@ class Bird:
                     self.rct.centerx -= delta[0]
                     self.rct.centery -= delta[1]
         self.blit(screen) #scr.sfc.blit(self.sfc, self.rct)
-
-    
-
 
 class Bomb:
     def __init__(self, color, r, v, screen):
@@ -65,6 +62,19 @@ class Bomb:
         self.vx *= yoko
         self.vy *= tate
         self.blit(screen) #screen.sfc.blit(self.sfc, self.rct)
+
+
+###追加
+class Gameover:
+    def __init__(self, font, color, screen):
+        self.text = font.render("GAMEOVER", True, color)
+        
+    def blit(self, screen):
+        screen.sfc.blit(self.text,[200, 400])
+
+    def update(self, screen):
+        self.blit(screen)
+
 
 
 def check_bound(obj_rct, scr_rct):
@@ -90,24 +100,29 @@ def main():
 
     # 練習5
     bomb = Bomb((255, 0, 0), 10, (+1, +1), screen)
-
-
+    font1 = pg.font.Font(None, 300)
     clock = pg.time.Clock() # 練習1
+    avater_num = 0
     while True:
         screen.blit()
-        
+
         for event in pg.event.get(): # 練習2
             if event.type == pg.QUIT:
-                return
+                return        
 
         bird.update(screen) #renshu4
-        
 
         # 練習7
         bomb.update(screen)
-
+    
         # 練習8
         if bird.rct.colliderect(bomb.rct): # こうかとんrctが爆弾rctと重なったら
+            gameover = Gameover(pg.font.Font(None, 300), (0, 0, 0), screen)
+            gameover.update(screen)
+            
+
+            pg.display.update() #練習2
+            clock.tick(0.5)
             return
 
         pg.display.update() #練習2
